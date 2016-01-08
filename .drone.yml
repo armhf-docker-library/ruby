@@ -7,7 +7,7 @@ build:
   commands:
     - apk add --update git
     - git clone --single-branch https://github.com/docker-library/ruby upstream
-    - cd upstream; patch -p1 <../armhf.patch
+    - cd upstream; sed -i 's/FROM buildpack-deps/FROM armhfbuild\/buildpack\-deps/' **/Dockerfile
 
 publish:
   docker:
