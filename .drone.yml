@@ -1,0 +1,25 @@
+matrix:
+  RUBY_VERSION:
+    - 2.2
+
+build:
+  image: armhfbuild/alpine:3.2
+  commands:
+    - apk add --update git
+    - git clone --single-branch https://github.com/docker-library/ruby upstream
+    - cd upstream; patch -p1 <../armhf.patch
+
+publish:
+  docker:
+    image: armhfplugins/drone-docker:docker-caching
+    file: upstream/$$RUBY_VERSION/Dockerfile
+    username: $$DOCKER_USER
+    email: $$DOCKER_EMAIL
+    password: $$DOCKER_PASSWORD
+    repo: armhfbuild/ruby
+    tag: "$$RUBY_VERSION"
+    storage_driver: overlay
+
+cache:
+  mount:
+    - /drone/docker
