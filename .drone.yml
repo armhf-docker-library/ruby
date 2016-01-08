@@ -29,7 +29,6 @@ publish:
       matrix:
         RUBY_VERSION: 2.3
 
-publish:
   docker:
     image: armhfplugins/drone-docker:docker-caching
     file: upstream/$$RUBY_VERSION/Dockerfile
