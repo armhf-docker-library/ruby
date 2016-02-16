@@ -1,6 +1,9 @@
 matrix:
   VERSION:
     - "2.3.0"
+    - "2.2.4"
+    - "2.1.8"
+    - "2.0.0-p648"
 
 build:
   image: armhfbuild/buildpack-deps:jessie-scm
@@ -20,7 +23,6 @@ publish:
     tag:
       - "$$VERSION"
       - "$${VERSION:0:3}"
-      - "$${VERSION:0:1}"
 
   docker_latest:
     image: armhfplugins/drone-docker:docker-caching
@@ -30,7 +32,9 @@ publish:
     password: $$DOCKER_PASSWORD
     email: $$DOCKER_EMAIL
     repo: armhfbuild/ruby
-    tag: latest
+    tag:
+      - "2"
+      - latest
     when:
       matrix:
         VERSION: "2.3.0"
