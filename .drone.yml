@@ -23,6 +23,7 @@ publish:
     tag:
       - "$$VERSION"
       - "$${VERSION:0:3}"
+    force_tag: true
 
   docker_latest:
     image: armhfplugins/drone-docker:docker-caching
@@ -35,6 +36,7 @@ publish:
     tag:
       - "2"
       - latest
+    force_tag: true
     when:
       matrix:
         VERSION: "2.3.0"
